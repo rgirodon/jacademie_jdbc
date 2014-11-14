@@ -7,7 +7,8 @@ import java.sql.SQLException;
 
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DatabaseUtils {
 
@@ -19,7 +20,7 @@ public class DatabaseUtils {
 
 	public static final String JDBC_URL = "jdbc:hsqldb:hsql://localhost/footdb";
 	
-	private static Logger logger = Logger.getLogger(DatabaseUtils.class);
+	private static Logger logger = LogManager.getLogger(DatabaseUtils.class);
 	
 	static {
 		try {

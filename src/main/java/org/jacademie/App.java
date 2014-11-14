@@ -2,9 +2,13 @@ package org.jacademie;
 
 import java.util.Collection;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jacademie.dao.FootDao;
+import org.jacademie.domain.Player;
 import org.jacademie.domain.Team;
+
+
 
 /**
  * Hello world!
@@ -12,12 +16,12 @@ import org.jacademie.domain.Team;
  */
 public class App {
 	
-	private static Logger logger = Logger.getLogger(App.class);
+	private static Logger logger = LogManager.getLogger(App.class);
 	
     public static void main( String[] args ) {
     	    	
         logger.info( "Welcome to FootDb App !" );
-                
+        
         FootDao dao = new FootDao();
         
         Collection<Team> equipes = dao.listAllEquipes();
@@ -25,8 +29,16 @@ public class App {
         for (Team equipe : equipes) {
         	
         	logger.info("Find : " + equipe);
+        	
+        	Collection<Player> players = dao.listAllPlayersForEquipe(equipe.getNum());
+        	
+        	for (Player player : players) {
+        		
+        		logger.info("Has player : " + player);
+        	}
         }
         
+        /*
         logger.info("Creating new team...");
         
         Team newTeam = new Team();
@@ -42,7 +54,7 @@ public class App {
         	
         	logger.info("Find : " + equipe);
         }
-        
+        */
         
         /*
         Connection connection = null;
