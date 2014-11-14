@@ -10,14 +10,17 @@ import java.util.Collection;
 
 
 
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jacademie.db.DatabaseUtils;
+import org.jacademie.domain.Player;
 import org.jacademie.domain.Team;
 
 public class FootDao {
 
-	private static Logger logger = Logger.getLogger(FootDao.class);
+	private static Logger logger = LogManager.getLogger(FootDao.class);
 	
 	public Collection<Team> listAllEquipes() {
 		
@@ -74,5 +77,50 @@ public class FootDao {
 		}
 		
 		DatabaseUtils.closeConnection(connection);
+	}
+
+	public Collection<Player> listAllPlayersForEquipe(Integer equipeNum) {
+		
+		Collection<Player> result = new ArrayList<Player>();
+		
+		Connection connection = DatabaseUtils.getConnection();
+		
+		if (connection != null) {
+			try {
+				PreparedStatement statement = connection.prepareStatement("SELECT ID, NAME, NUMERO, EQUIPE_ID "
+						                                                + "  FROM PLAYER "
+						                                                + "  WHERE EQUIPE_ID = ? "
+						                                                + " ORDER BY NUMERO");
+				
+				statement.setInt(1, equipeNum);
+				
+				ResultSet rs = statement.executeQuery();
+				
+				while(rs.next()){
+					
+					Player player = new Player();
+					
+					Integer num = rs.getInt("ID");					
+					String name = rs.getString("NAME");
+					Integer numero = rs.getInt("NUMERO");
+					Integer equipeId = rs.getInt("EQUIPE_ID");
+					
+					player.setNum(num);
+					player.setName(name);
+					player.setNumero(numero);
+					player.setEquipeId(equipeId);
+					
+					result.add(player);
+				}
+			}
+			catch(SQLException e) {
+				logger.error("Unable to retrieve All Players for team");
+				logger.error(ExceptionUtils.getStackTrace(e));
+			}
+		}
+		
+		DatabaseUtils.closeConnection(connection);
+		
+		return result;
 	}
 }
