@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="org.jacademie.domain">
+    <class name="Commande" table="COMMANDE">
+
+        <id name="id" type="integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+
+        <property name="date" type="date">
+            <column name="DATE" not-null="true" />
+        </property>
+
+		<many-to-one name="status" class="CommandeStatus" column="STATUS_ID" lazy="false" />
+
+        <set name="lignes" lazy="false" cascade="all,delete-orphan">
+ 			<key column="COMMANDE_ID" not-null="true"/>
+			<one-to-many class="LigneCommande"/>
+ 		</set>
+
+<!-- 		
+ 		<many-to-one name="client" class="Client" column="CLIENT_ID" lazy="false" />
+-->
+
+<!-- 		
+ 		<set name="clients" table="COMMANDE_CLIENT_JOINT" lazy="false">
+			<key column="COMMANDE_ID" />
+			<many-to-many column="CLIENT_ID" class="Client" />
+		</set>
+-->		
+		
+    </class>
+ 
+ <!--      
+    <query name="commandesForProduit"><![CDATA[SELECT cmd FROM Commande as cmd 
+                                                        JOIN cmd.lignes as lig
+                                                       WHERE lig.labelProduit LIKE :labelProduit]]></query>
+ --> 
+ <!--   
+    <query name="commandesForParticulierByPrenom"><![CDATA[SELECT cmd FROM Commande as cmd 
+                                                        JOIN cmd.client as cli
+                                                       WHERE cli.prenom LIKE :prenom]]></query>
+ -->
+    
+</hibernate-mapping>

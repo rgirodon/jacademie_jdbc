@@ -20,11 +20,11 @@
         
         <mapping resource="mapping/LigneCommande.hbm.xml"></mapping>
         
-        <!--
-        <mapping resource="Commande.hbm.xml"></mapping>
+        <mapping resource="mapping/Commande.hbm.xml"></mapping>
 
-		<mapping resource="CommandeStatus.hbm.xml"></mapping>
+		<mapping resource="mapping/CommandeStatus.hbm.xml"></mapping>
         
+        <!--
         <mapping resource="org/jacademie/domain/Client.hbm.xml"></mapping>        
         -->
         
