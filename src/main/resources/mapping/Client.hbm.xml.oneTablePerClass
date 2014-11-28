@@ -10,31 +10,38 @@
             <generator class="identity" />
         </id>
         
-        <discriminator column="TYPE_CLIENT" type="string" />
-        
         <property  name="numeroClient" type="integer">
-          <column name="NUMERO_CLIENT" />
+          <column name="numeroClient" not-null="true" />
         </property>
         
-		<subclass name="Particulier" discriminator-value="P">
+<!--         <set name="commandes" lazy="false" cascade="all,delete-orphan" inverse="true"> -->
+<!--  			<key column="CLIENT_ID" not-null="true"/> -->
+<!-- 			<one-to-many class="Commande"/> -->
+<!--  		</set> -->
+        
+		<joined-subclass name="Particulier" table="PARTICULIER">
+		  
+		  <key column="ID"/>
 		  
 		  <property  name="nom" type="string">
-            <column name="NOM" length="80" />
+            <column name="NOM" length="80" not-null="true" />
           </property>
         
           <property name="prenom" type="string">
-            <column name="PRENOM" length="80" />
+            <column name="PRENOM" length="80" not-null="true" />
           </property>
         	     
-	    </subclass>
+	    </joined-subclass>
 	    
-	    <subclass name="Entreprise" discriminator-value="E">
+	    <joined-subclass name="Entreprise" table="ENTREPRISE">
+		  
+		  <key column="ID"/>
 		  
 		  <property name="siret" type="string">
-            <column name="SIRET" length="80" />
+            <column name="SIRET" length="80" not-null="true" />
           </property>
 		  	     
-	    </subclass>
+	    </joined-subclass>
         
     </class>
     

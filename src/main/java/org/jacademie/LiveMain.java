@@ -186,7 +186,7 @@ public class LiveMain {
 			sessionFactory.close();
 			*/
 			
-			
+			/*
 			Particulier particulier = new Particulier();
 			particulier.setNumeroClient(1000);
 			particulier.setPrenom("Jean");
@@ -201,8 +201,9 @@ public class LiveMain {
 			clientDao.createClient(entreprise);
 			
 			HibernateUtils.tearDown();
+			*/
 			
-			/*
+			
 			Client client1 = clientDao.findClientById(1);
 			
 			logger.info(client1.toString());
@@ -212,7 +213,7 @@ public class LiveMain {
 			logger.info(client2.toString());
 			
 			HibernateUtils.tearDown();
-			*/
+			
 			/*
 			Particulier particulier = (Particulier)session.get(Particulier.class, 1);
 			particulier.setPrenom("Jeanne");
