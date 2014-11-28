@@ -53,4 +53,21 @@ public class ClientDao {
 		return result;
 	}
 
+	public void updateClient(Client client) throws Exception {
+
+		logger.info("Updating Client : " + client + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		session.merge(client);
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("Client updated.");
+	}
+
 }

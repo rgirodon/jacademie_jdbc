@@ -9,14 +9,13 @@ public class Client {
 	
 	private Integer numeroClient;
 	
-	// private Set<Commande> commandes;
+	private Set<Commande> commandes;
 	
-	
-
 	public Client() {
+		
 		super();
 		
-		// this.commandes = new HashSet<Commande>();
+		this.commandes = new HashSet<Commande>();
 	}
 	
 	@Override
@@ -24,14 +23,14 @@ public class Client {
 		return "Client [id=" + id + ", numeroClient=" + numeroClient + "]";
 	}
 
-	/*
+	
 	public void ajouterCommande(Commande commande) {
 		
 		this.commandes.add(commande);
 		
 		commande.setClient(this);
 	}
-	*/
+	
 	
 	public Integer getId() {
 		return id;
@@ -49,16 +48,11 @@ public class Client {
 		this.numeroClient = numeroClient;
 	}
 	
-	
-
-	/*
 	public Set<Commande> getCommandes() {
 		return commandes;
 	}
 
 	public void setCommandes(Set<Commande> commandes) {
 		this.commandes = commandes;
-	}
-	*/
-	
+	}	
 }

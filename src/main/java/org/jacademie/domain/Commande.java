@@ -16,7 +16,7 @@ public class Commande {
 	
 	// private Set<Client> clients;
 
-	// private Client client;
+	private Client client;
 	
 	public Commande() {
 		
@@ -94,7 +94,7 @@ public class Commande {
 		this.lignes = lignes;
 	}
 
-	/*
+	
 	public Client getClient() {
 		return client;
 	}
@@ -102,7 +102,7 @@ public class Commande {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	*/
+	
 
 	/*
 	public Set<Client> getClients() {

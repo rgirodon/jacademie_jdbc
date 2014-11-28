@@ -21,9 +21,8 @@
 			<one-to-many class="LigneCommande"/>
  		</set>
 
-<!-- 		
  		<many-to-one name="client" class="Client" column="CLIENT_ID" lazy="false" />
--->
+
 
 <!-- 		
  		<set name="clients" table="COMMANDE_CLIENT_JOINT" lazy="false">

@@ -203,7 +203,7 @@ public class LiveMain {
 			HibernateUtils.tearDown();
 			*/
 			
-			
+			/*
 			Client client1 = clientDao.findClientById(1);
 			
 			logger.info(client1.toString());
@@ -213,6 +213,7 @@ public class LiveMain {
 			logger.info(client2.toString());
 			
 			HibernateUtils.tearDown();
+			*/
 			
 			/*
 			Particulier particulier = (Particulier)session.get(Particulier.class, 1);
@@ -255,13 +256,17 @@ public class LiveMain {
 			sessionFactory.close();	
 			*/
 			
-			/*
+			
+			// creer un commandeStatus
+			CommandeStatus status = new CommandeStatus();
+			status.setLabel("Livrée");
+			
+			commandeDao.createCommandeStatus(status);
+			
 			// creer un client
 			Entreprise e = new Entreprise();
 			e.setSiret("ABC");
-			
-			// sauver ce client
-			session.save(e);
+			e.setNumeroClient(123);
 			
 			// creer une commande avec ses lignes de commande
 			LigneCommande lc = new LigneCommande();
@@ -270,19 +275,53 @@ public class LiveMain {
 			
 			Commande c = new Commande();
 			c.setDate(new Date());
+			c.setStatus(status);
 			c.addLigne(lc);
 			
-			// affecter le client a la commande
-			c.setClient(e);
+			e.ajouterCommande(c);
 			
-			// sauver cette commande
-			session.save(c);
+			clientDao.createClient(e);
 			
-			session.getTransaction().commit();
+			HibernateUtils.tearDown();
 			
-			session.close();
 			
-			sessionFactory.close();
+			/*
+			Client client1 = clientDao.findClientById(1);
+			
+			logger.info("Client : " + client1);
+			logger.info("Nb Commandes : " + client1.getCommandes().size());
+			
+			HibernateUtils.tearDown();
+			*/
+			
+			/*
+			Commande commande1 = commandeDao.findCommandeById(1);
+			logger.info("Commande : " + commande1);
+			logger.info("Concerne le client : " + commande1.getClient());
+			
+			HibernateUtils.tearDown();
+			*/
+			
+			/*
+			Client client1 = clientDao.findClientById(1);
+			
+			CommandeStatus status = commandeDao.findCommandeStatusById(1);
+			
+			Commande c = new Commande();
+			c.setDate(new Date());
+			c.setStatus(status);
+			
+			LigneCommande lc = new LigneCommande();
+			lc.setQuantite(1);
+			lc.setLabelProduit("Dentifrice");
+			
+			c.addLigne(lc);
+			
+			client1.ajouterCommande(c);
+			
+			clientDao.updateClient(client1);
+			
+			HibernateUtils.tearDown();
 			*/
 			
 			/*
