@@ -80,7 +80,7 @@ public class LiveMain {
 			HibernateUtils.tearDown();
 			*/
 			
-			
+			/*
 			CommandeStatus status = commandeDao.findCommandeStatusById(1);
 			
 			LigneCommande lc1 = new LigneCommande();
@@ -100,31 +100,20 @@ public class LiveMain {
 			commandeDao.createCommande(c);
 			
 			HibernateUtils.tearDown();
+			*/
 			
 			
-			/*
-			Session session = HibernateUtils.getSession(); 
-
-			session.beginTransaction();
+						
+			CommandeStatus status = commandeDao.findCommandeStatusById(2);		
 			
-			CommandeStatus status = new CommandeStatus();
-			status.setLabel("En Cours d'expédition");
-			session.save(status);
-
-			session.getTransaction().commit();
-			
-			session.beginTransaction();			
-			
-			Commande commande = (Commande)session.get(Commande.class, 1);
+			Commande commande = commandeDao.findCommandeById(2);
 			
 			commande.setStatus(status);
 			
-			session.getTransaction().commit();
-			
-			session.close();
+			commandeDao.updateCommande(commande);
 			
 			HibernateUtils.tearDown();
-			*/
+			
 			
 			/*
 			Session session = HibernateUtils.getSession(); 

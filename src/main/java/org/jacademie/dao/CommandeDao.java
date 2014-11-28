@@ -166,6 +166,48 @@ public class CommandeDao {
 		logger.info("Commande created.");
 	}
 	
+	public Commande findCommandeById(int id) throws Exception {
+		
+		logger.info("Finding Commande with id : " + id + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		Commande result = (Commande)session.get(Commande.class, id);
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		if (result != null) {
+
+			logger.info("Commande found : " + result);
+		}
+		else {
+			logger.info("Commande not found");
+		}
+		
+		return result;
+	}
+	
+	public void updateCommande(Commande commande) throws Exception {
+		
+		logger.info("Updating Commande : " + commande + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		session.merge(commande);
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("Commande updated.");
+	}
+	
 	
 	/*
 	public void retrieveCommandes() throws Exception {
