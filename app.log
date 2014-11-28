@@ -1,0 +1,33 @@
+2014-11-14 16:01:36,253 [main] INFO  org.jacademie.App - Welcome to FootDb App !
+2014-11-14 16:01:36,413 [main] INFO  org.jacademie.App - Find Team : BAYERN MUNICH
+2014-11-14 16:01:36,413 [main] INFO  org.jacademie.App - Find Team : CHELSEA FC
+2014-11-14 16:01:36,413 [main] INFO  org.jacademie.App - Find Team : FC BARCELONE
+2014-11-14 16:01:36,413 [main] INFO  org.jacademie.App - Find Team : INTER MILAN
+2014-11-14 16:01:36,413 [main] INFO  org.jacademie.App - Find Team : REAL MADRID
+2014-11-14 16:01:36,413 [main] INFO  org.jacademie.App - Thanks for using us !
+2014-11-14 16:46:20,864 [main] INFO  org.jacademie.App - Welcome to FootDb App !
+2014-11-14 16:46:21,014 [main] INFO  org.jacademie.App - Find : Team [num=2, name=BAYERN MUNICH]
+2014-11-14 16:46:21,124 [main] INFO  org.jacademie.App - Find : Team [num=3, name=CHELSEA FC]
+2014-11-14 16:46:21,224 [main] INFO  org.jacademie.App - Find : Team [num=1, name=FC BARCELONE]
+2014-11-14 16:46:21,324 [main] INFO  org.jacademie.App - Has player : Player [num=1, name=Neymar, numero=11, equipeId=1]
+2014-11-14 16:46:21,324 [main] INFO  org.jacademie.App - Find : Team [num=4, name=INTER MILAN]
+2014-11-14 16:46:21,424 [main] INFO  org.jacademie.App - Find : Team [num=0, name=REAL MADRID]
+2014-11-14 16:46:21,524 [main] INFO  org.jacademie.App - Has player : Player [num=0, name=Varane, numero=2, equipeId=0]
+2014-11-14 16:46:21,524 [main] INFO  org.jacademie.App - Has player : Player [num=2, name=Cristiano, numero=7, equipeId=0]
+2014-11-14 16:46:21,524 [main] INFO  org.jacademie.App - Thanks for using us !
+2014-11-21 14:44:35,743 [main] INFO  org.jacademie.dao.CommandeDao - Creating LigneCommande : LigneCommande [id=null, quantite=1, labelProduit=Livre 1]...
+2014-11-21 14:44:35,824 [main] INFO  org.jacademie.dao.CommandeDao - LigneCommande created.
+2014-11-21 14:44:35,824 [main] INFO  org.jacademie.dao.CommandeDao - Creating LigneCommande : LigneCommande [id=null, quantite=1, labelProduit=Disque 1]...
+2014-11-21 14:44:35,824 [main] INFO  org.jacademie.dao.CommandeDao - LigneCommande created.
+2014-11-21 15:52:09,518 [main] INFO  org.jacademie.dao.CommandeDao - Finding LigneCommande with id : 8...
+2014-11-21 15:52:09,599 [main] INFO  org.jacademie.dao.CommandeDao - LigneCommande found : LigneCommande [id=8, quantite=1, labelProduit=Disque 1]
+2014-11-21 16:15:19,756 [main] INFO  org.jacademie.dao.CommandeDao - Deleting LigneCommande with id : 8...
+2014-11-21 16:15:19,756 [main] INFO  org.jacademie.dao.CommandeDao - Finding LigneCommande with id : 8...
+2014-11-21 16:15:19,837 [main] INFO  org.jacademie.dao.CommandeDao - LigneCommande found : LigneCommande [id=8, quantite=10, labelProduit=Disque 1]
+2014-11-21 16:15:19,847 [main] INFO  org.jacademie.dao.CommandeDao - LigneCommande deleted.
+2014-11-28 11:37:20,507 [main] INFO  org.jacademie.dao.CommandeDao - Creating CommandeStatus : org.jacademie.domain.CommandeStatus@59d4cd39...
+2014-11-28 11:37:20,588 [main] INFO  org.jacademie.dao.CommandeDao - CommandeStatus created.
+2014-11-28 11:42:26,141 [main] INFO  org.jacademie.dao.CommandeDao - Finding CommandeStatus with id : 1...
+2014-11-28 11:42:26,232 [main] INFO  org.jacademie.dao.CommandeDao - CommandeStatus found : org.jacademie.domain.CommandeStatus@7a1234bf
+2014-11-28 11:42:26,232 [main] INFO  org.jacademie.dao.CommandeDao - Creating Commande : Commande [id=null, date=Fri Nov 28 11:42:26 CET 2014, lignes=[LigneCommande [id=null, quantite=1, labelProduit=Livre 2], LigneCommande [id=null, quantite=1, labelProduit=Disque 2]]]...
+2014-11-28 11:42:26,262 [main] INFO  org.jacademie.dao.CommandeDao - Commande created.

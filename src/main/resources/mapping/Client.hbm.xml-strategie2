@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="org.jacademie.domain">
+    <class name="Client" table="CLIENT">
+        
+        <id name="id" type="integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        
+        <discriminator column="TYPE_CLIENT" type="string" />
+        
+		<subclass name="Particulier" discriminator-value="P">
+		  
+		  <property  name="nom" type="string">
+            <column name="NOM" length="80" />
+          </property>
+        
+          <property name="prenom" type="string">
+            <column name="PRENOM" length="80" />
+          </property>
+        	     
+	    </subclass>
+	    
+	    <subclass name="Entreprise" discriminator-value="E">
+		  
+		  <property name="siret" type="string">
+            <column name="SIRET" length="80" />
+          </property>
+		  	     
+	    </subclass>
+        
+    </class>
+    
+    <query name="particuliersByName"><![CDATA[FROM Particulier WHERE nom LIKE :name]]></query>
+    
+    <query name="entreprisesBySiret"><![CDATA[FROM Entreprise WHERE siret LIKE :siret]]></query>
+    
+</hibernate-mapping>

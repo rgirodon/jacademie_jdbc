@@ -50,14 +50,18 @@ public class LiveMain {
 			
 			HibernateUtils.tearDown();
 			*/
-			
+			/*
 			LigneCommande lc = commandeDao.findLigneCommandeById(8);
 			
-			lc.setQuantite(10);
-			
-			commandeDao.updateLigneCommande(lc);
+			if (lc != null) {
+				
+				lc.setQuantite(10);
+				
+				commandeDao.updateLigneCommande(lc);
+			}
 			
 			HibernateUtils.tearDown();
+			*/
 			
 			/*
 			commandeDao.deleteLigneCommande(8);
@@ -65,21 +69,26 @@ public class LiveMain {
 			HibernateUtils.tearDown();
 			*/
 			
+			
+			
 			/*
 			CommandeStatus status = new CommandeStatus();
-			status.setLabel("En Cours de préparation");
-			session.save(status);
+			status.setLabel("En Cours d'exécution");
 			
-			session.getTransaction().commit();
+			commandeDao.createCommandeStatus(status);
 			
-			session.beginTransaction();
-
+			HibernateUtils.tearDown();
+			*/
+			
+			
+			CommandeStatus status = commandeDao.findCommandeStatusById(1);
+			
 			LigneCommande lc1 = new LigneCommande();
-			lc1.setLabelProduit("Livre 1");
+			lc1.setLabelProduit("Livre 2");
 			lc1.setQuantite(1);
 			
 			LigneCommande lc2 = new LigneCommande();
-			lc2.setLabelProduit("Disque 1");
+			lc2.setLabelProduit("Disque 2");
 			lc2.setQuantite(1);
 			
 			Commande c = new Commande();
@@ -88,16 +97,16 @@ public class LiveMain {
 			c.addLigne(lc1);
 			c.addLigne(lc2);
 			
-			session.save(c);
+			commandeDao.createCommande(c);
 			
-			session.getTransaction().commit();
+			HibernateUtils.tearDown();
 			
-			session.close();
-			
-			sessionFactory.close();
-			*/
 			
 			/*
+			Session session = HibernateUtils.getSession(); 
+
+			session.beginTransaction();
+			
 			CommandeStatus status = new CommandeStatus();
 			status.setLabel("En Cours d'expédition");
 			session.save(status);
@@ -106,7 +115,7 @@ public class LiveMain {
 			
 			session.beginTransaction();			
 			
-			Commande commande = (Commande)session.get(Commande.class, 2);
+			Commande commande = (Commande)session.get(Commande.class, 1);
 			
 			commande.setStatus(status);
 			
@@ -114,11 +123,15 @@ public class LiveMain {
 			
 			session.close();
 			
-			sessionFactory.close();
+			HibernateUtils.tearDown();
 			*/
 			
 			/*
-			Commande commande = (Commande)session.get(Commande.class, 2);
+			Session session = HibernateUtils.getSession(); 
+
+			session.beginTransaction();
+						
+			Commande commande = (Commande)session.get(Commande.class, 1);
 
 			LigneCommande lc2 = new LigneCommande();
 			lc2.setLabelProduit("Disque 5");
@@ -130,7 +143,7 @@ public class LiveMain {
 			
 			session.close();
 			
-			sessionFactory.close();
+			HibernateUtils.tearDown();
 			*/
 			
 			/*

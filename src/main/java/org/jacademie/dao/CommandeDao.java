@@ -106,58 +106,68 @@ public class CommandeDao {
 		}
 	}
 
+	
+	public void createCommandeStatus(CommandeStatus commandeStatus) throws Exception {
+		
+		logger.info("Creating CommandeStatus : " + commandeStatus + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		session.save(commandeStatus);
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("CommandeStatus created.");
+	}
+
+	public CommandeStatus findCommandeStatusById(int id) throws Exception {
+		
+		logger.info("Finding CommandeStatus with id : " + id + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		CommandeStatus result = (CommandeStatus)session.get(CommandeStatus.class, id);
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		if (result != null) {
+
+			logger.info("CommandeStatus found : " + result);
+		}
+		else {
+			logger.info("CommandeStatus not found");
+		}
+		
+		return result;
+	}
+
+	public void createCommande(Commande commande) throws Exception {
+		
+		logger.info("Creating Commande : " + commande + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		session.save(commande);
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("Commande created.");
+	}
+	
+	
 	/*
-	public void createCommandeStatus() throws Exception {
-		
-		Session session = HibernateUtils.getSession();
-		
-		session.beginTransaction();
-		
-		CommandeStatus cs1 = new CommandeStatus();
-		cs1.setLabel("EN ATTENTE D'EXPEDITION");
-
-		CommandeStatus cs2 = new CommandeStatus();
-		cs2.setLabel("EXPEDITIEE");
-		
-		session.save(cs1);
-		
-		session.save(cs2);
-		
-		session.getTransaction().commit();
-		
-		HibernateUtils.closeSession(session);
-	}
-	
-	
-	public void createCommandes() throws Exception {
-		
-		Session session = HibernateUtils.getSession();
-		
-		session.beginTransaction();
-
-		LigneCommande l1 = new LigneCommande();
-		l1.setLabelProduit("Playmobil Cowboys");
-		l1.setQuantite(1);
-		
-		LigneCommande l2 = new LigneCommande();
-		l2.setLabelProduit("Playmobil Indiens");
-		l2.setQuantite(2);
-		
-		Commande c = new Commande();
-		c.addLigne(l1);
-		c.addLigne(l2);
-		//c.addClient(cl1);
-		//c.addClient(cl2);
-		c.setDate(new Date());
-		//c.setStatus(commandeStatus);
-		
-		session.save(c);
-		
-		session.getTransaction().commit();
-		
-		HibernateUtils.closeSession(session);
-	}
-
 	public void retrieveCommandes() throws Exception {
 		
 		Session session = HibernateUtils.getSession();

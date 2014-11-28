@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="org.jacademie.domain">
+    <class name="Client" table="CLIENT">
+        
+        <id name="id" type="integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        
+        <set name="commandes" lazy="false" cascade="all,delete-orphan" inverse="true">
+ 			<key column="CLIENT_ID" not-null="true"/>
+			<one-to-many class="Commande"/>
+ 		</set>
+        
+		<joined-subclass name="Particulier" table="PARTICULIER">
+		  
+		  <key column="ID"/>
+		  
+		  <property  name="nom" type="string">
+            <column name="NOM" length="80" not-null="true" />
+          </property>
+        
+          <property name="prenom" type="string">
+            <column name="PRENOM" length="80" not-null="true" />
+          </property>
+        	     
+	    </joined-subclass>
+	    
+	    <joined-subclass name="Entreprise" table="ENTREPRISE">
+		  
+		  <key column="ID"/>
+		  
+		  <property name="siret" type="string">
+            <column name="SIRET" length="80" not-null="true" />
+          </property>
+		  	     
+	    </joined-subclass>
+        
+    </class>
+    
+    <query name="particuliersByName"><![CDATA[FROM Particulier WHERE nom LIKE :name]]></query>
+    
+    <query name="entreprisesBySiret"><![CDATA[FROM Entreprise WHERE siret LIKE :siret]]></query>
+    
+</hibernate-mapping>
