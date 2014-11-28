@@ -17,8 +17,8 @@ public class Particulier extends Client {
 		builder.append(nom);
 		builder.append(", prenom=");
 		builder.append(prenom);
-		builder.append(", id=");
-		builder.append(getId());
+		builder.append(", ");
+		builder.append(super.toString());
 		builder.append("]");
 		return builder.toString();
 	}

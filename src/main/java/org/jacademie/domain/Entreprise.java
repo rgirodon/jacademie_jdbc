@@ -13,8 +13,8 @@ public class Entreprise extends Client {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Entreprise [siret=");
 		builder.append(siret);
-		builder.append(", id=");
-		builder.append(getId());
+		builder.append(", ");
+		builder.append(super.toString());
 		builder.append("]");
 		return builder.toString();
 	}

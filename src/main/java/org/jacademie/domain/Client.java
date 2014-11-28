@@ -7,12 +7,21 @@ public class Client {
 
 	private Integer id;
 	
+	private Integer numeroClient;
+	
 	// private Set<Commande> commandes;
 	
+	
+
 	public Client() {
 		super();
 		
 		// this.commandes = new HashSet<Commande>();
+	}
+	
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", numeroClient=" + numeroClient + "]";
 	}
 
 	/*
@@ -31,6 +40,16 @@ public class Client {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	public Integer getNumeroClient() {
+		return numeroClient;
+	}
+
+	public void setNumeroClient(Integer numeroClient) {
+		this.numeroClient = numeroClient;
+	}
+	
+	
 
 	/*
 	public Set<Commande> getCommandes() {

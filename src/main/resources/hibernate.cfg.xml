@@ -24,9 +24,8 @@
 
 		<mapping resource="mapping/CommandeStatus.hbm.xml"></mapping>
         
-        <!--
-        <mapping resource="org/jacademie/domain/Client.hbm.xml"></mapping>        
-        -->
+        <mapping resource="mapping/Client.hbm.xml"></mapping>        
+        
         
     </session-factory>
 </hibernate-configuration>
