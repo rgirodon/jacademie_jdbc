@@ -13,6 +13,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
+import org.jacademie.dao.ClientDao;
 import org.jacademie.dao.CommandeDao;
 import org.jacademie.db.HibernateUtils;
 import org.jacademie.domain.Client;
@@ -34,6 +35,8 @@ public class LiveMain {
 			HibernateUtils.setUp();
 			
 			CommandeDao commandeDao = new CommandeDao();
+			
+			ClientDao clientDao = new ClientDao();
 			
 			/*
 			LigneCommande lc1 = new LigneCommande();
@@ -103,7 +106,7 @@ public class LiveMain {
 			*/
 			
 			
-						
+			/*			
 			CommandeStatus status = commandeDao.findCommandeStatusById(2);		
 			
 			Commande commande = commandeDao.findCommandeById(2);
@@ -113,6 +116,22 @@ public class LiveMain {
 			commandeDao.updateCommande(commande);
 			
 			HibernateUtils.tearDown();
+			*/
+			
+			/*
+			Commande commande = commandeDao.findCommandeById(2);
+			
+			for (LigneCommande ligneCommande : commande.getLignes()) {
+				
+				Integer quantite = ligneCommande.getQuantite();
+				
+				ligneCommande.setQuantite(quantite + 1);
+			}
+			
+			commandeDao.updateCommande(commande);
+			
+			HibernateUtils.tearDown();
+			*/
 			
 			
 			/*
@@ -167,25 +186,33 @@ public class LiveMain {
 			sessionFactory.close();
 			*/
 			
-			/* 
+			
 			Particulier particulier = new Particulier();
+			particulier.setNumeroClient(1000);
 			particulier.setPrenom("Jean");
-			particulier.setNom("Dupont");
+			particulier.setNom("Dupont");			
+
+			clientDao.createClient(particulier);
 			
 			Entreprise entreprise = new Entreprise();
+			entreprise.setNumeroClient(2000);
 			entreprise.setSiret("LEntreprise");
 			
+			clientDao.createClient(entreprise);
 			
-			session.save(particulier);
-			session.save(entreprise);
+			HibernateUtils.tearDown();
 			
-			session.getTransaction().commit();
+			/*
+			Client client1 = clientDao.findClientById(1);
 			
-			session.close();
+			logger.info(client1.toString());
 			
-			sessionFactory.close();
+			Client client2 = clientDao.findClientById(2);
+			
+			logger.info(client2.toString());
+			
+			HibernateUtils.tearDown();
 			*/
-			
 			/*
 			Particulier particulier = (Particulier)session.get(Particulier.class, 1);
 			particulier.setPrenom("Jeanne");
