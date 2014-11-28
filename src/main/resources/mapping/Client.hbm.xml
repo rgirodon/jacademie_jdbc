@@ -20,6 +20,11 @@
 			<key column="CLIENT_ID" not-null="true"/>
 			<one-to-many class="Commande"/>
  		</set>
+ 		
+ 		<set name="invitations" table="EVENT_CLIENT_JOINT" lazy="false" inverse="true">
+			<key column="CLIENT_ID" />
+			<many-to-many column="EVENT_ID" class="Event" />
+		</set>
         
 		<subclass name="Particulier" discriminator-value="P">
 		  

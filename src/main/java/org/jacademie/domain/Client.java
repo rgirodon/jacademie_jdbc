@@ -11,11 +11,15 @@ public class Client {
 	
 	private Set<Commande> commandes;
 	
+	private Set<Event> invitations;
+	
 	public Client() {
 		
 		super();
 		
 		this.commandes = new HashSet<Commande>();
+		
+		this.invitations = new HashSet<Event>();
 	}
 	
 	@Override
@@ -54,5 +58,13 @@ public class Client {
 
 	public void setCommandes(Set<Commande> commandes) {
 		this.commandes = commandes;
+	}
+
+	public Set<Event> getInvitations() {
+		return invitations;
+	}
+
+	public void setInvitations(Set<Event> invitations) {
+		this.invitations = invitations;
 	}	
 }

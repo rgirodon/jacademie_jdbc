@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="org.jacademie.domain">
+    <class name="Event" table="EVENT">
+
+        <id name="id" type="integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+
+        <property name="date" type="date">
+            <column name="DATE" not-null="true" />
+        </property>
+        
+        <property name="description" type="string">
+            <column name="DESCRIPTION" not-null="true" />
+        </property>
+			
+ 		<set name="invitedClients" table="EVENT_CLIENT_JOINT" lazy="false">
+			<key column="EVENT_ID" />
+			<many-to-many column="CLIENT_ID" class="Client" />
+		</set>	
+		
+    </class>
+
+    
+</hibernate-mapping>

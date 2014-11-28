@@ -15,11 +15,13 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
 import org.jacademie.dao.ClientDao;
 import org.jacademie.dao.CommandeDao;
+import org.jacademie.dao.EventDao;
 import org.jacademie.db.HibernateUtils;
 import org.jacademie.domain.Client;
 import org.jacademie.domain.Commande;
 import org.jacademie.domain.CommandeStatus;
 import org.jacademie.domain.Entreprise;
+import org.jacademie.domain.Event;
 import org.jacademie.domain.LigneCommande;
 import org.jacademie.domain.Particulier;
 
@@ -37,6 +39,8 @@ public class LiveMain {
 			CommandeDao commandeDao = new CommandeDao();
 			
 			ClientDao clientDao = new ClientDao();
+			
+			EventDao eventDao = new EventDao();
 			
 			/*
 			LigneCommande lc1 = new LigneCommande();
@@ -256,7 +260,7 @@ public class LiveMain {
 			sessionFactory.close();	
 			*/
 			
-			
+			/*
 			// creer un commandeStatus
 			CommandeStatus status = new CommandeStatus();
 			status.setLabel("Livrée");
@@ -283,7 +287,7 @@ public class LiveMain {
 			clientDao.createClient(e);
 			
 			HibernateUtils.tearDown();
-			
+			*/
 			
 			/*
 			Client client1 = clientDao.findClientById(1);
@@ -323,6 +327,37 @@ public class LiveMain {
 			
 			HibernateUtils.tearDown();
 			*/
+			
+			
+			Entreprise e1 = new Entreprise();
+			e1.setNumeroClient(1000);
+			e1.setSiret("ABC1");
+			
+			clientDao.createClient(e1);
+			
+			Entreprise e2 = new Entreprise();
+			e2.setNumeroClient(1001);
+			e2.setSiret("ABC2");
+			
+			clientDao.createClient(e2);
+			
+			Entreprise e3 = new Entreprise();
+			e3.setNumeroClient(1023);
+			e3.setSiret("BAC3");
+			
+			clientDao.createClient(e3);
+			
+			Event ev1 = new Event();
+			ev1.setDate(new Date());
+			ev1.setDescription("Event inter entreprise");
+			
+			ev1.ajouterInvite(e1);
+			ev1.ajouterInvite(e2);
+			ev1.ajouterInvite(e3);
+			
+			eventDao.createEvent(ev1);
+			
+			HibernateUtils.tearDown();
 			
 			/*
 			Entreprise e1 = new Entreprise();
