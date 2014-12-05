@@ -409,12 +409,19 @@ public class LiveMain {
 			session.save(e3);
 			*/
 			
-			List<Entreprise> entreprises = clientDao.retrieveEntrepriseBySiret("A");
+			List<Entreprise> entreprises = clientDao.retrieveEntreprisesBySiret("A");
 			
 			for (Entreprise entreprise : entreprises) {
 				
 				logger.info("Found : " + entreprise.toString());
-			}			
+			}
+			
+			List<Particulier> particuliers = clientDao.retrieveParticuliersByName("P");
+			
+			for (Particulier particulier : particuliers) {
+				
+				logger.info("Found : " + particulier.toString());
+			}
 			
 			HibernateUtils.tearDown();
 			

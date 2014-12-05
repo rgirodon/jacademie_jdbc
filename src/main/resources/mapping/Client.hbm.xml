@@ -48,7 +48,7 @@
         
     </class>
     
-<!--     <query name="particuliersByName"><![CDATA[FROM Particulier WHERE nom LIKE :name]]></query> -->
+    <query name="Particulier.byName"><![CDATA[FROM Particulier WHERE UPPER(nom) LIKE :name]]></query>
     
     <query name="Entreprise.bySiret"><![CDATA[FROM Entreprise WHERE siret LIKE :siret]]></query>
     

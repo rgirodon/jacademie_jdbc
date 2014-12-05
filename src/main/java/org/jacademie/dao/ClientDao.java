@@ -10,6 +10,7 @@ import org.jacademie.db.HibernateUtils;
 import org.jacademie.domain.Client;
 import org.jacademie.domain.Entreprise;
 import org.jacademie.domain.LigneCommande;
+import org.jacademie.domain.Particulier;
 
 public class ClientDao {
 
@@ -74,7 +75,7 @@ public class ClientDao {
 		logger.info("Client updated.");
 	}
 
-	public List<Entreprise> retrieveEntrepriseBySiret(String siret) throws Exception {
+	public List<Entreprise> retrieveEntreprisesBySiret(String siret) throws Exception {
 		
 		logger.info("Retrieving Entreprise by siret : " + siret + "...");
 		
@@ -95,6 +96,31 @@ public class ClientDao {
 		HibernateUtils.closeSession(session);
 		
 		logger.info("Entreprise retrieved : " + result.size());
+		
+		return  result;
+	}
+	
+	public List<Particulier> retrieveParticuliersByName(String name) throws Exception {
+		
+		logger.info("Retrieving Particulier by name : " + name.toUpperCase() + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		// Query query = session.createQuery("FROM Entreprise ent WHERE ent.siret LIKE :siret");
+		
+		Query query = session.getNamedQuery("Particulier.byName");
+		
+		query.setString("name", name.toUpperCase() + "%");
+		
+		List<Particulier> result = query.list();
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("Particulier retrieved : " + result.size());
 		
 		return  result;
 	}
