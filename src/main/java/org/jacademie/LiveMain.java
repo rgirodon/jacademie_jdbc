@@ -410,23 +410,39 @@ public class LiveMain {
 			session.save(e3);
 			*/
 			
-			/*
-			List<Entreprise> entreprises = clientDao.retrieveEntreprisesBySiret("A");
+			
+			List<Entreprise> entreprises = clientDao.retrieveEntreprisesByOptionalSiretAndNumero("A", null);
 			
 			for (Entreprise entreprise : entreprises) {
 				
-				logger.info("Found : " + entreprise.toString());
+				logger.info("Found by siret only : " + entreprise.toString());
 			}
 			
-			List<Particulier> particuliers = clientDao.retrieveParticuliersByName("P");
+			entreprises = clientDao.retrieveEntreprisesByOptionalSiretAndNumero(null, 1002);
+			
+			for (Entreprise entreprise : entreprises) {
+				
+				logger.info("Found by numero only : " + entreprise.toString());
+			}
+			
+			entreprises = clientDao.retrieveEntreprisesByOptionalSiretAndNumero("A", 1002);
+			
+			for (Entreprise entreprise : entreprises) {
+				
+				logger.info("Found by siret and numero : " + entreprise.toString());
+			}
+			
+			/*
+			List<Particulier> particuliers = clientDao.retrieveWithCriteriaParticuliersByName("P");
 			
 			for (Particulier particulier : particuliers) {
 				
 				logger.info("Found : " + particulier.toString());
 			}
+			*/
 			
 			HibernateUtils.tearDown();
-			*/
+			
 			
 			/*
 			List<Commande> commandes = commandeDao.findCommandesByProduct("Brosse");
@@ -452,6 +468,7 @@ public class LiveMain {
 			HibernateUtils.tearDown();
 			*/
 			
+			/*
 			CommandeStatus archivedStatus = commandeDao.findCommandeStatusByLabel(Constants.COMMANDE_STATUS_ARCHIVEE_LABEL);
 			
 			List<Commande> commandes = commandeDao.findCommandesByStatus(Constants.COMMANDE_STATUS_LIVREE_LABEL);
@@ -466,6 +483,7 @@ public class LiveMain {
 			}
 			
 			HibernateUtils.tearDown();
+			*/
 			
 			/*
 			Criteria criteria = session.createCriteria(Entreprise.class);

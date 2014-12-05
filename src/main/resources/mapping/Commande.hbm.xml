@@ -21,15 +21,7 @@
 			<one-to-many class="LigneCommande"/>
  		</set>
 
- 		<many-to-one name="client" class="Client" column="CLIENT_ID" lazy="false" />
-
-
-<!-- 		
- 		<set name="clients" table="COMMANDE_CLIENT_JOINT" lazy="false">
-			<key column="COMMANDE_ID" />
-			<many-to-many column="CLIENT_ID" class="Client" />
-		</set>
--->		
+ 		<many-to-one name="client" class="Client" column="CLIENT_ID" lazy="false" />	
 		
     </class>
  
@@ -41,6 +33,8 @@
   
     <query name="Commande.byStatus"><![CDATA[]]>SELECT cmd FROM Commande as cmd
                                                           WHERE UPPER(cmd.status.label) = :status</query>
+                                                          
+    
  <!--   
     <query name="commandesForParticulierByPrenom"><![CDATA[SELECT cmd FROM Commande as cmd 
                                                         JOIN cmd.client as cli

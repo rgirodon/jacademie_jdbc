@@ -170,3 +170,14 @@
 2014-12-05 16:07:32,062 [main] INFO  org.jacademie.LiveMain - Found : Commande [id=2, date=2014-11-28, lignes=[LigneCommande [id=2, quantite=1, labelProduit=Dentifrice]]]
 2014-12-05 16:07:32,062 [main] INFO  org.jacademie.dao.CommandeDao - Updating Commande : Commande [id=2, date=2014-11-28, lignes=[LigneCommande [id=2, quantite=1, labelProduit=Dentifrice]]]...
 2014-12-05 16:07:32,078 [main] INFO  org.jacademie.dao.CommandeDao - Commande updated.
+2014-12-05 16:55:50,642 [main] INFO  org.jacademie.dao.ClientDao - Retrieving with Criteria Entreprise by siret : A...
+2014-12-05 16:55:50,799 [main] INFO  org.jacademie.dao.ClientDao - Entreprises retrieved : 3
+2014-12-05 16:55:50,799 [main] INFO  org.jacademie.LiveMain - Found by siret only : Entreprise [siret=ABC, Client [id=1, numeroClient=1001]]
+2014-12-05 16:55:50,799 [main] INFO  org.jacademie.LiveMain - Found by siret only : Entreprise [siret=ABC1, Client [id=2, numeroClient=1002]]
+2014-12-05 16:55:50,799 [main] INFO  org.jacademie.LiveMain - Found by siret only : Entreprise [siret=ABC2, Client [id=3, numeroClient=1003]]
+2014-12-05 16:55:50,799 [main] INFO  org.jacademie.dao.ClientDao - Retrieving with Criteria Entreprise by siret : null...
+2014-12-05 16:55:50,799 [main] INFO  org.jacademie.dao.ClientDao - Entreprises retrieved : 1
+2014-12-05 16:55:50,799 [main] INFO  org.jacademie.LiveMain - Found by numero only : Entreprise [siret=ABC1, Client [id=2, numeroClient=1002]]
+2014-12-05 16:55:50,799 [main] INFO  org.jacademie.dao.ClientDao - Retrieving with Criteria Entreprise by siret : A...
+2014-12-05 16:55:50,815 [main] INFO  org.jacademie.dao.ClientDao - Entreprises retrieved : 1
+2014-12-05 16:55:50,815 [main] INFO  org.jacademie.LiveMain - Found by siret and numero : Entreprise [siret=ABC1, Client [id=2, numeroClient=1002]]

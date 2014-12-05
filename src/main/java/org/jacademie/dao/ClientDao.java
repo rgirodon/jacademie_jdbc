@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.jacademie.db.HibernateUtils;
 import org.jacademie.domain.Client;
 import org.jacademie.domain.Entreprise;
@@ -95,9 +97,41 @@ public class ClientDao {
 		
 		HibernateUtils.closeSession(session);
 		
-		logger.info("Entreprise retrieved : " + result.size());
+		logger.info("Entreprises retrieved : " + result.size());
 		
-		return  result;
+		return result;
+	}
+	
+	public List<Entreprise> retrieveEntreprisesByOptionalSiretAndNumero(String siret, 
+																			Integer numero) throws Exception {
+		
+		logger.info("Retrieving with Criteria Entreprise by siret : " + siret + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		Criteria criteria = session.createCriteria(Entreprise.class);		
+		
+		if (siret != null) {
+ 		
+			criteria.add(Restrictions.ilike("siret", siret + "%"));
+		}
+		
+		if (numero != null) {
+	 		
+			criteria.add(Restrictions.eq("numeroClient", numero));
+		}
+		
+		List<Entreprise> result = criteria.list();
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("Entreprises retrieved : " + result.size());
+		
+		return result;
 	}
 	
 	public List<Particulier> retrieveParticuliersByName(String name) throws Exception {
@@ -145,4 +179,6 @@ public class ClientDao {
 		
 		return  result;
 	}
+
+	
 }

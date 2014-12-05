@@ -13,8 +13,6 @@ public class Commande {
 	private CommandeStatus status;
 	
 	private Set<LigneCommande> lignes;
-	
-	// private Set<Client> clients;
 
 	private Client client;
 	
@@ -23,8 +21,6 @@ public class Commande {
 		super();
 		
 		this.lignes = new HashSet<LigneCommande>();
-		
-		//this.clients = new HashSet<Client>();
 	}
 	
 	public void addLigne(LigneCommande ligneCommande) {
@@ -36,17 +32,6 @@ public class Commande {
 		
 		this.lignes.remove(ligneCommande);
 	}
-	/*
-	public void addClient(Client client) {
-		
-		this.clients.add(client);
-	}
-	
-	public void removeClient(Client client) {
-		
-		this.clients.remove(client);
-	}
-	*/
 	
 	@Override
 	public String toString() {
@@ -102,17 +87,4 @@ public class Commande {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	
-
-	/*
-	public Set<Client> getClients() {
-		return clients;
-	}
-
-	public void setClients(Set<Client> clients) {
-		this.clients = clients;
-	}
-	*/
-	
-	
 }
