@@ -52,4 +52,6 @@
     
     <query name="Entreprise.bySiret"><![CDATA[FROM Entreprise WHERE siret LIKE :siret]]></query>
     
+    <query name="Client.all">FROM Client</query>
+    
 </hibernate-mapping>

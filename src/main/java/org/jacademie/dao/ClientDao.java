@@ -124,4 +124,25 @@ public class ClientDao {
 		
 		return  result;
 	}
+
+	public List<Client> retrieveAllClients() throws Exception {
+		
+		logger.info("Retrieving all Clients...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		Query query = session.getNamedQuery("Client.all");
+		
+		List<Client> result = query.list();
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("Clients retrieved : " + result.size());
+		
+		return  result;
+	}
 }

@@ -207,6 +207,29 @@ public class CommandeDao {
 		
 		logger.info("Commande updated.");
 	}
+
+	public List<Commande> findCommandesByProduct(String product) throws Exception {
+		
+		logger.info("Retrieving Commande by product : " + product.toUpperCase() + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		Query query = session.getNamedQuery("Commande.byProduct");
+		
+		query.setString("product", product.toUpperCase() + "%");
+		
+		List<Commande> result = query.list();
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("Commande retrieved : " + result.size());
+		
+		return  result;
+	}
 	
 	
 	/*

@@ -409,6 +409,7 @@ public class LiveMain {
 			session.save(e3);
 			*/
 			
+			/*
 			List<Entreprise> entreprises = clientDao.retrieveEntreprisesBySiret("A");
 			
 			for (Entreprise entreprise : entreprises) {
@@ -421,6 +422,29 @@ public class LiveMain {
 			for (Particulier particulier : particuliers) {
 				
 				logger.info("Found : " + particulier.toString());
+			}
+			
+			HibernateUtils.tearDown();
+			*/
+			
+			/*
+			List<Commande> commandes = commandeDao.findCommandesByProduct("Brosse");
+			
+			for (Commande commande : commandes) {
+				
+				logger.info("Found : " + commande.toString());
+				
+				logger.info(commande.getClient() + " has ordered 'Brosse*' !");
+			}
+			
+			HibernateUtils.tearDown();
+			*/
+			
+			List<Client> clients = clientDao.retrieveAllClients();
+			
+			for (Client client : clients) {
+				
+				logger.info("Found : " + client.toString());
 			}
 			
 			HibernateUtils.tearDown();

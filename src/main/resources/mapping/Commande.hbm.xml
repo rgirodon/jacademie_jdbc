@@ -33,11 +33,11 @@
 		
     </class>
  
- <!--      
-    <query name="commandesForProduit"><![CDATA[SELECT cmd FROM Commande as cmd 
+      
+    <query name="Commande.byProduct"><![CDATA[SELECT cmd FROM Commande as cmd 
                                                         JOIN cmd.lignes as lig
-                                                       WHERE lig.labelProduit LIKE :labelProduit]]></query>
- --> 
+                                                       WHERE UPPER(lig.labelProduit) LIKE :product]]></query>
+  
  <!--   
     <query name="commandesForParticulierByPrenom"><![CDATA[SELECT cmd FROM Commande as cmd 
                                                         JOIN cmd.client as cli
