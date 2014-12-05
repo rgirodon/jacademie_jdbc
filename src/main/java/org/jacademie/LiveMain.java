@@ -16,6 +16,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.jacademie.dao.ClientDao;
 import org.jacademie.dao.CommandeDao;
 import org.jacademie.dao.EventDao;
+import org.jacademie.db.Constants;
 import org.jacademie.db.HibernateUtils;
 import org.jacademie.domain.Client;
 import org.jacademie.domain.Commande;
@@ -440,11 +441,28 @@ public class LiveMain {
 			HibernateUtils.tearDown();
 			*/
 			
+			/*
 			List<Client> clients = clientDao.retrieveAllClients();
 			
 			for (Client client : clients) {
 				
 				logger.info("Found : " + client.toString());
+			}
+			
+			HibernateUtils.tearDown();
+			*/
+			
+			CommandeStatus archivedStatus = commandeDao.findCommandeStatusByLabel(Constants.COMMANDE_STATUS_ARCHIVEE_LABEL);
+			
+			List<Commande> commandes = commandeDao.findCommandesByStatus(Constants.COMMANDE_STATUS_LIVREE_LABEL);
+			
+			for (Commande commande : commandes) {
+				
+				logger.info("Found : " + commande.toString());
+				
+				commande.setStatus(archivedStatus);
+				
+				commandeDao.updateCommande(commande);
 			}
 			
 			HibernateUtils.tearDown();

@@ -38,6 +38,9 @@
                                                         JOIN cmd.lignes as lig
                                                        WHERE UPPER(lig.labelProduit) LIKE :product]]></query>
   
+  
+    <query name="Commande.byStatus"><![CDATA[]]>SELECT cmd FROM Commande as cmd
+                                                          WHERE UPPER(cmd.status.label) = :status</query>
  <!--   
     <query name="commandesForParticulierByPrenom"><![CDATA[SELECT cmd FROM Commande as cmd 
                                                         JOIN cmd.client as cli

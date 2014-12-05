@@ -226,9 +226,62 @@ public class CommandeDao {
 		
 		HibernateUtils.closeSession(session);
 		
-		logger.info("Commande retrieved : " + result.size());
+		logger.info("Commandes retrieved : " + result.size());
 		
-		return  result;
+		return result;
+	}
+	
+	public List<Commande> findCommandesByStatus(String status) throws Exception {
+		
+		logger.info("Retrieving Commande by status : " + status.toUpperCase() + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		Query query = session.getNamedQuery("Commande.byStatus");
+		
+		query.setString("status", status.toUpperCase());
+		
+		List<Commande> result = query.list();
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("Commandes retrieved : " + result.size());
+		
+		return result;
+	}
+
+	public CommandeStatus findCommandeStatusByLabel(String label) throws Exception {
+		
+		CommandeStatus result = null;
+		
+		logger.info("Retrieving CommandeStatus by label : " + label.toUpperCase() + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		Query query = session.getNamedQuery("CommandeStatus.byLabel");
+		
+		query.setString("label", label.toUpperCase());
+		
+		List<CommandeStatus> list = query.list();
+		
+		logger.info("CommandeStatus retrieved : " + list.size());
+		
+		if (!list.isEmpty()) {
+			
+			result = list.iterator().next();
+		}
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		return result;
 	}
 	
 	

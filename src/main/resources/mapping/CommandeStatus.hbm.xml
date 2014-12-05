@@ -15,5 +15,7 @@
         </property>
         
     </class>
+            
+    <query name="CommandeStatus.byLabel">FROM CommandeStatus as status WHERE UPPER(status.label) = :label</query>    
         
 </hibernate-mapping>
