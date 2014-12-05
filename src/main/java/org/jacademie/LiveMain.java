@@ -360,6 +360,7 @@ public class LiveMain {
 			HibernateUtils.tearDown();
 			*/
 			
+			/*
 			Particulier p1 = new Particulier();
 			p1.setNumeroClient(1000);
 			p1.setNom("P1");
@@ -391,6 +392,7 @@ public class LiveMain {
 			eventDao.createEvent(ev1);
 			
 			HibernateUtils.tearDown();
+			*/
 			
 			/*
 			Entreprise e1 = new Entreprise();
@@ -405,28 +407,16 @@ public class LiveMain {
 			session.save(e1);
 			session.save(e2);
 			session.save(e3);
+			*/
 			
-			// Query hqlQuery = session.createQuery("FROM Entreprise ent WHERE ent.siret LIKE :siret");
+			List<Entreprise> entreprises = clientDao.retrieveEntrepriseBySiret("A");
 			
-			Query hqlQuery = session.getNamedQuery("entreprisesBySiret");
-			
-			hqlQuery.setString("siret", "A%");
-			
-			List<Entreprise> hqlQueryResult = hqlQuery.list();
-			
-			for (Entreprise entreprise : hqlQueryResult) {
+			for (Entreprise entreprise : entreprises) {
 				
-				System.out.println("HQL Query found : " + entreprise.toString());
-				
-				// entreprise.setSiret("A-" + entreprise.getSiret());
+				logger.info("Found : " + entreprise.toString());
 			}			
 			
-			session.getTransaction().commit();
-			
-			session.close();
-			
-			sessionFactory.close();
-			*/
+			HibernateUtils.tearDown();
 			
 			/*
 			Criteria criteria = session.createCriteria(Entreprise.class);

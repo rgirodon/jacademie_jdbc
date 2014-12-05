@@ -1,10 +1,14 @@
 package org.jacademie.dao;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.jacademie.db.HibernateUtils;
 import org.jacademie.domain.Client;
+import org.jacademie.domain.Entreprise;
 import org.jacademie.domain.LigneCommande;
 
 public class ClientDao {
@@ -70,4 +74,28 @@ public class ClientDao {
 		logger.info("Client updated.");
 	}
 
+	public List<Entreprise> retrieveEntrepriseBySiret(String siret) throws Exception {
+		
+		logger.info("Retrieving Entreprise by siret : " + siret + "...");
+		
+		Session session = HibernateUtils.getSession();
+		
+		session.beginTransaction();
+		
+		// Query query = session.createQuery("FROM Entreprise ent WHERE ent.siret LIKE :siret");
+		
+		Query query = session.getNamedQuery("Entreprise.bySiret");
+		
+		query.setString("siret", siret + "%");
+		
+		List<Entreprise> result = query.list();
+		
+		session.getTransaction().commit();
+		
+		HibernateUtils.closeSession(session);
+		
+		logger.info("Entreprise retrieved : " + result.size());
+		
+		return  result;
+	}
 }
