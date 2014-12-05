@@ -328,7 +328,7 @@ public class LiveMain {
 			HibernateUtils.tearDown();
 			*/
 			
-			
+			/*
 			Entreprise e1 = new Entreprise();
 			e1.setNumeroClient(1000);
 			e1.setSiret("ABC1");
@@ -354,6 +354,39 @@ public class LiveMain {
 			ev1.ajouterInvite(e1);
 			ev1.ajouterInvite(e2);
 			ev1.ajouterInvite(e3);
+			
+			eventDao.createEvent(ev1);
+			
+			HibernateUtils.tearDown();
+			*/
+			
+			Particulier p1 = new Particulier();
+			p1.setNumeroClient(1000);
+			p1.setNom("P1");
+			
+			clientDao.createClient(p1);
+			
+			Particulier p2 = new Particulier();
+			p2.setNumeroClient(1000);
+			p2.setNom("P2");
+			
+			clientDao.createClient(p2);
+			
+			Particulier p3 = new Particulier();
+			p3.setNumeroClient(1000);
+			p3.setNom("P3");
+			
+			clientDao.createClient(p3);
+			
+			
+			
+			Event ev1 = new Event();
+			ev1.setDate(new Date());
+			ev1.setDescription("Event inter particuliers");
+			
+			ev1.ajouterInvite(p1);
+			ev1.ajouterInvite(p2);
+			ev1.ajouterInvite(p3);
 			
 			eventDao.createEvent(ev1);
 			
